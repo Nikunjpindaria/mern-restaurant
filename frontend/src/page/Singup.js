@@ -89,6 +89,7 @@ const Singup = () => {
           <img
             src={data.image ? data.image : loginSignupImage}
             className="w-full h-full"
+            alt="profile preview"
           />
           <label htmlFor="profileImage">
             <div className="absolute bottom-0 h-1/3  bg-slate-500 bg-opacity-50 w-full text-center cursor-pointer">

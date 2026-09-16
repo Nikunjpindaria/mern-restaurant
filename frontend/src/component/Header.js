@@ -28,7 +28,7 @@ const Header = () => {
       <div className="flex items-center h-full justify-between">
         <Link to={""}>
           <div className="flex max-w-4xl mx-auto ">
-            <img src={logo} className="rounded-full h-20 " />
+            <img src={logo} className="rounded-full h-20 " alt="logo" />
             <h2 className=" font-bold text-2xl dark:text-red-700  p-4  md: hidden md:flex  ">
               Aana Zoor
             </h2>
@@ -53,7 +53,7 @@ const Header = () => {
           <div className=" text-slate-600" onClick={handleShowMenu}>
             <div className="text-3xl cursor-pointer w-8 h-8 rounded-full overflow-hidden drop-shadow-md">
               {userData.image ? (
-                <img src={userData.image} className="h-full w-full" />
+                <img src={userData.image} className="h-full w-full" alt="user profile" />
               ) : (
                 <HiOutlineUserCircle />
               )}
