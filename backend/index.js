@@ -3,6 +3,11 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv").config();
 const Stripe = require("stripe");
+const dns = require("dns");
+
+try {
+  dns.setServers(["8.8.8.8", "8.8.4.4"]);
+} catch (e) {}
 
 const app = express();
 app.use(cors());
