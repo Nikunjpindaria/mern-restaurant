@@ -12,9 +12,20 @@ function App() {
 
   useEffect(() => {
     (async () => {
-      const res = await fetch(`${process.env.REACT_APP_SERVER_DOMIN}/product`);
-      const resData = await res.json();
-      dispatch(setDataProduct(resData));
+      try {
+        const domain = process.env.REACT_APP_SERVER_DOMIN;
+        if (!domain) {
+          console.warn("REACT_APP_SERVER_DOMIN environment variable is not defined!");
+          return;
+        }
+        const res = await fetch(`${domain}/product`);
+        if (res.ok) {
+          const resData = await res.json();
+          dispatch(setDataProduct(resData));
+        }
+      } catch (err) {
+        console.error("Failed to load products:", err);
+      }
     })();
   }, [dispatch]);
 

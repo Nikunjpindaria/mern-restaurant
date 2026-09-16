@@ -7,10 +7,9 @@ import AllProduct from "../component/AllProduct";
 
 const Home = () => {
   const productData = useSelector((state) => state.product.productList);
-  const homeProductCartList = productData.slice(20, 25);
+  const homeProductCartList = productData.slice(0, 4);
   const homeProductCartListVegetables = productData.filter(
-    (el) => el.category === "vegetable",
-    []
+    (el) => el.category && el.category.toLowerCase().includes("vegetable")
   );
   const loadingArray = new Array(4).fill(null);
   const loadingArrayFeature = new Array(10).fill(null);
@@ -21,6 +20,13 @@ const Home = () => {
   };
   const preveProduct = () => {
     slideProductRef.current.scrollLeft -= 200;
+  };
+
+  const handleOrderNow = () => {
+    const section = document.getElementById("allProductSection");
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" });
+    }
   };
 
   return (
@@ -45,7 +51,10 @@ const Home = () => {
             product descriptions, and secure payment options, we aim to make
             your ordering process hassle-free and enjoyable.
           </p>
-          <button className="font-bold bg-red-500 text-slate-200 px-4 py-2 rounded-md">
+          <button
+            onClick={handleOrderNow}
+            className="font-bold bg-red-500 hover:bg-red-600 text-slate-200 px-4 py-2 rounded-md cursor-pointer transition-all"
+          >
             Order Now
           </button>
         </div>
@@ -115,7 +124,9 @@ const Home = () => {
         </div>
       </div>
 
-      <AllProduct heading={"Your Product"} />
+      <div id="allProductSection">
+        <AllProduct heading={"Your Product"} />
+      </div>
     </div>
   );
 };
